@@ -1,0 +1,99 @@
+﻿<Window x:Class="Automobiles_Services.Views.AddServiceCenterWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Добавить автосервис"
+        Width="500" Height="600"
+        MinWidth="400" MinHeight="380"
+        ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#D1EEFC">
+
+    <Window.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E0A9AF"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center"
+                                              VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C8949A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="InputField" TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="Background" Value="#FFFCD6"/>
+            <Setter Property="BorderBrush" Value="#B5D5CA"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <StackPanel Margin="30,20">
+
+        <TextBlock Text="Новый автосервис"
+                   FontSize="16" FontWeight="Bold"
+                   HorizontalAlignment="Center"
+                   Margin="0,0,0,16"/>
+
+        <TextBlock Text="Компания" FontSize="12" Margin="0,0,0,4"/>
+        <TextBox x:Name="CompanyNameTextBox" Style="{StaticResource InputField}" TabIndex="0"/>
+
+        <TextBlock Text="Название центра" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="NameOfTheCenterTextBox" Style="{StaticResource InputField}" TabIndex="1"/>
+
+        <TextBlock Text="Количество мест" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="NumberOfSeatsTextBox" Style="{StaticResource InputField}" TabIndex="2"/>
+
+        <TextBlock Text="Город" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="CityTextBox" Style="{StaticResource InputField}" TabIndex="3"/>
+
+        <TextBlock Text="Улица" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="StreetTextBox" Style="{StaticResource InputField}" TabIndex="4"/>
+
+        <TextBlock Text="Дом" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="HouseTextBox" Style="{StaticResource InputField}" TabIndex="5"/>
+
+        <Grid Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Сохранить"
+                    Style="{StaticResource PrimaryButton}"
+                    Click="SaveButton_Click" TabIndex="6"/>
+            <Button Grid.Column="2" Content="Отмена"
+                    Style="{StaticResource PrimaryButton}"
+                    Click="CancelButton_Click" TabIndex="7"/>
+        </Grid>
+
+    </StackPanel>
+</Window>

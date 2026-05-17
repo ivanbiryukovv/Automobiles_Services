@@ -1,0 +1,244 @@
+﻿<Window x:Class="Automobiles_Services.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Automobiles_Services.Views"
+        mc:Ignorable="d"
+        Title="Автосервис" Height="580" Width="980"
+        Background="#b5d5ca"
+        Icon="/Assets/logo.png"
+        MinHeight="550"
+        MinWidth="900">
+    <Window.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E0A9AF"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C8949A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SideMenuButton" TargetType="Button">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Foreground" Value="#333333"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="40"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            <Setter Property="Padding" Value="18,0,0,0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                BorderThickness="3,0,0,0" BorderBrush="Transparent">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#C8E6DC"/>
+                                <Setter TargetName="Bd" Property="BorderBrush" Value="#E0A9AF"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SideMenuButtonActive" TargetType="Button" BasedOn="{StaticResource SideMenuButton}">
+            <Setter Property="Background" Value="#D1EEFC"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border x:Name="Bd" Background="{TemplateBinding Background}"
+                                BorderThickness="3,0,0,0" BorderBrush="#E0A9AF">
+                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                              VerticalAlignment="Center"
+                                              Margin="{TemplateBinding Padding}"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="Bd" Property="Background" Value="#BDE0F0"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="CardListBox" TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Disabled"/>
+        </Style>
+        <Style x:Key="CardListBoxItem" TargetType="ListBoxItem">
+            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            <Setter Property="Padding" Value="0"/>
+            <Setter Property="Margin" Value="0,0,0,8"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Border x:Name="CardBorder" Background="White" CornerRadius="8"
+                                Padding="16,12" BorderBrush="#D5E8E0" BorderThickness="1"
+                                Cursor="Hand">
+                            <ContentPresenter/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="CardBorder" Property="BorderBrush" Value="#E0A9AF"/>
+                                <Setter TargetName="CardBorder" Property="Background" Value="#FFFDF5"/>
+                            </Trigger>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="CardBorder" Property="BorderBrush" Value="#C8949A"/>
+                                <Setter TargetName="CardBorder" Property="Background" Value="#FFF0F2"/>
+                                <Setter TargetName="CardBorder" Property="BorderThickness" Value="2"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="SearchBoxStyle" TargetType="TextBox">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="#333"/>
+            <Setter Property="Background" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Padding" Value="4,0,0,0"/>
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="58"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="0" Background="#A3C9BC">
+            <Grid Margin="10,0">
+                <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                    <Image Source="/Assets/logo.png" Width="40" Height="40" Stretch="Uniform" Margin="6,0,10,0"/>
+                    <TextBlock Text="Автосервис" FontSize="20" FontWeight="Bold"
+                               VerticalAlignment="Center" Foreground="#222"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="{Binding CurrentUserInfo}" VerticalAlignment="Center"
+                               FontSize="12" Foreground="#333" Margin="0,0,14,0"/>
+                    <Button Content="Выход" Style="{StaticResource PrimaryButton}"
+                            Height="28" Width="75" Click="Exit_Click"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="185"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Border Grid.Column="0" Background="#D1EEFC">
+                <StackPanel Margin="0,12,0,0" Name="SideMenu">
+                    <Button Content="Автосервисы" Name="MenuServiceCenters"
+                            Style="{StaticResource SideMenuButtonActive}"
+                            Click="MenuClick" Tag="ServiceCenters"/>
+                    <Button Content="Владельцы" Name="MenuOwners"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="Owners"/>
+                    <Button Content="Заводы производители" Name="MenuManufacturers"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="Manufacturers"/>
+                    <Button Content="Автомобили" Name="MenuAutomobiles"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="Automobiles"/>
+                    <Button Content="Вместимость" Name="MenuPassengerCapacities"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="PassengerCapacities"/>
+                    <Button Content="Договора" Name="MenuAgreements"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="Agreements"/>
+                    <Button Content="Пользователи" Name="MenuUsers"
+                            Style="{StaticResource SideMenuButton}"
+                            Click="MenuClick" Tag="Users"/>
+                </StackPanel>
+            </Border>
+            <Grid Grid.Column="1" Margin="14,10,14,10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="0,0,0,10">
+                    <Button Content="Назад" Name="BackButton" Style="{StaticResource PrimaryButton}"
+                            Width="90" Margin="0,0,12,0" Click="Back_Click" Visibility="Collapsed"/>
+                    <TextBlock Name="SectionTitle" Text="Автосервисы" FontSize="18"
+                               FontWeight="Bold" VerticalAlignment="Center" Foreground="#222"
+                               Margin="0,0,20,0"/>
+                    <TextBlock Name="ParentInfo" Text="" FontSize="13"
+                               VerticalAlignment="Center" Foreground="#555"
+                               Margin="0,0,20,0" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <StackPanel Grid.Row="1" Orientation="Horizontal" Margin="0,0,0,10" Name="ActionButtons">
+                    <Button Content="Добавить" Style="{StaticResource PrimaryButton}"
+                            Width="100" Margin="0,0,8,0" Click="Add_Click"/>
+                    <Button Content="Редактировать" Style="{StaticResource PrimaryButton}"
+                            Width="120" Margin="0,0,8,0" Click="Edit_Click"/>
+                    <Button Content="Удалить" Style="{StaticResource PrimaryButton}"
+                            Width="90" Click="Delete_Click"/>
+                    <Button Content="Экспорт в Excel" Name="ExportButton"
+                            Style="{StaticResource PrimaryButton}" Width="130"
+                            Margin="12,0,0,0" Visibility="Collapsed" Click="ExportOwnersToExcel_Click"/>
+                    <Button Content="Показать договоры" Name="ShowAgreementsButton"
+                            Style="{StaticResource PrimaryButton}" Width="140"
+                            Margin="12,0,0,0" Click="ShowAgreements_Click" Visibility="Collapsed"/>
+                </StackPanel>
+
+                <Border Grid.Row="2" Background="White" CornerRadius="8"
+                        BorderBrush="#D5E8E0" BorderThickness="1"
+                        Margin="0,0,0,10" Padding="10,0" Height="36">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+
+                        <TextBox Grid.Column="1" Name="SearchBox"
+                                 Style="{StaticResource SearchBoxStyle}"
+                                 TextChanged="SearchBox_TextChanged"/>
+                        <TextBlock Grid.Column="1" Name="SearchPlaceholder"
+                                   Text="Поиск..." FontSize="13" Foreground="#BBBBBB"
+                                   VerticalAlignment="Center" Margin="4,0,0,0"
+                                   IsHitTestVisible="False"/>
+                        <Button Grid.Column="2" Name="ClearSearchButton"
+                                Content="✕" Width="22" Height="22"
+                                FontSize="11" Foreground="#AAAAAA"
+                                Background="Transparent" BorderThickness="0"
+                                Cursor="Hand" Visibility="Collapsed"
+                                Click="ClearSearch_Click"/>
+                    </Grid>
+                </Border>
+
+                <ListBox Grid.Row="3" Name="CardsListBox"
+                         Style="{StaticResource CardListBox}"
+                         ItemContainerStyle="{StaticResource CardListBoxItem}"/>
+            </Grid>
+        </Grid>
+    </Grid>
+</Window>

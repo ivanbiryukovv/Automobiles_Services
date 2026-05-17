@@ -1,0 +1,76 @@
+﻿<Window x:Class="Automobiles_Services.Views.PassengerCapacityFormWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Width="400" Height="280" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner"
+        Background="#D1EEFC">
+    <Window.Resources>
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Background" Value="#E0A9AF"/>
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Height" Value="32"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}" CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#C8949A"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="InputField" TargetType="TextBox">
+            <Setter Property="Height" Value="30"/>
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Padding" Value="8,0"/>
+            <Setter Property="Background" Value="#FFFCD6"/>
+            <Setter Property="BorderBrush" Value="#B5D5CA"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="TextBox">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="1" CornerRadius="6">
+                            <ScrollViewer x:Name="PART_ContentHost"
+                                          Margin="{TemplateBinding Padding}"
+                                          VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <StackPanel Margin="30,20">
+        <TextBlock x:Name="TitleText" FontSize="16" FontWeight="Bold"
+                   HorizontalAlignment="Center" Margin="0,0,0,16"/>
+
+        <TextBlock Text="Автомобиль" FontSize="12" Margin="0,0,0,4"/>
+        <ComboBox x:Name="AutomobileComboBox" Height="30" TabIndex="0"
+                  Background="#FFFCD6" BorderBrush="#B5D5CA"
+                  DisplayMemberPath="Series"/>
+
+        <TextBlock Text="Кол-во пассажиров" FontSize="12" Margin="0,8,0,4"/>
+        <TextBox x:Name="PassengersTextBox" Style="{StaticResource InputField}" TabIndex="1"/>
+
+        <Grid Margin="0,16,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="12"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0" Content="Сохранить"
+                    Style="{StaticResource PrimaryButton}" Click="SaveButton_Click"/>
+            <Button Grid.Column="2" Content="Отмена"
+                    Style="{StaticResource PrimaryButton}" Click="CancelButton_Click"/>
+        </Grid>
+    </StackPanel>
+</Window>
